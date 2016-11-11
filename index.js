@@ -3,7 +3,7 @@ const rootURL = "https://api.github.com"
 function getRepositories() {
   var username = document.getElementById("username").value
   const req = new XMLHttpRequest()
-  const uri = rootURL + "/users/" + username + "/repos"
+  const uri = rootURL + "/users/" + username + "/repos" //?sort=updated
   req.addEventListener("load", displayRepositories)
   req.open("GET", uri)
   req.send()
@@ -12,7 +12,7 @@ function getRepositories() {
 
 function displayRepositories(event, data) {
   var repos = JSON.parse(this.responseText)
-  console.log(repos)
+  // console.log(repos)
   const repoList = "<ul>" + repos.map(r => {
     const dataUser = 'data-username="' + r.owner.login + '"';
     const dataRepo = 'data-repository="' + r.name + '"';
